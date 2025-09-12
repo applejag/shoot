@@ -4,6 +4,7 @@ author_name = "Lux"
 app_name = "Shoot!"
 
 [files]
+_splash = { path = "splash.png" }
 font = { path = "font.fff", url = "https://fonts.fireflyzero.com/fonts/ascii/ibm437r_8x8.fff" }
 hub1 = { path = "levels/hub1.txt", copy = true }
 hub2 = { path = "levels/hub2.txt", copy = true }
