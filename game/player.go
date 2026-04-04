@@ -39,7 +39,7 @@ func iAmAlive() bool {
 		if player == nil {
 			continue
 		}
-		if player.peer == me {
+		if me.Eq(player.peer) {
 			return true
 		}
 	}
@@ -117,7 +117,7 @@ func (p *Player) update() {
 
 func (p *Player) handleButtons(btns firefly.Buttons) {
 	justPressed := btns.JustPressed(p.btns)
-	if justPressed.AnyPressed() {
+	if justPressed.Any() {
 		origin := firefly.P(
 			p.pos.X+playerR-bulletD/2,
 			p.pos.Y+playerR-bulletD/2,

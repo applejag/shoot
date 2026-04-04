@@ -2,6 +2,7 @@ author_id = "lux"
 app_id = "shoot"
 author_name = "Lux"
 app_name = "Shoot!"
+lang = "go"
 
 [files]
 _splash = { path = "splash.png" }

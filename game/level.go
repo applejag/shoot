@@ -38,7 +38,7 @@ func loadLevel() *Level {
 	file := firefly.LoadFile(fileName, nil)
 	x := 0
 	y := 0
-	for _, c := range file.Raw {
+	for _, c := range file.Bytes() {
 		switch c {
 		case '\n':
 			x = 0
