@@ -9,7 +9,7 @@ var (
 	enemies     *Enemies
 	players     *Set[Player]
 	level       *Level
-	score       *Score
+	score       Score
 	title       *Title
 )
 
