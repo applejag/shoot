@@ -1,15 +1,15 @@
 package game
 
 type Projectiles struct {
-	items *Set[Projectile]
+	items *Set2[Projectile]
 }
 
 func (ps *Projectiles) update() {
-	for i, p := range ps.items.iter() {
-		if p == nil {
+	for i, isSet := range ps.items.iter() {
+		if !isSet {
 			continue
 		}
-		keep := p.update()
+		keep := ps.items.ref(i).update()
 		if !keep {
 			ps.items.remove(i)
 		}
@@ -17,10 +17,10 @@ func (ps *Projectiles) update() {
 }
 
 func (ps Projectiles) render() {
-	for _, p := range ps.items.iter() {
-		if p == nil {
+	for i, isSet := range ps.items.iter() {
+		if !isSet {
 			continue
 		}
-		p.render()
+		ps.items.ref(i).render()
 	}
 }

@@ -59,7 +59,7 @@ func openHub() {
 func resetGame() {
 	title = nil
 	score = newScore()
-	projectiles = &Projectiles{items: newSet[Projectile]()}
+	projectiles = &Projectiles{items: newSet2[Projectile]()}
 	enemies = newEnemies()
 	level = loadLevel()
 	players = loadPlayers()

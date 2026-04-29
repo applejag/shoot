@@ -122,7 +122,7 @@ func (p *Player) handleButtons(btns firefly.Buttons) {
 			p.pos.X+playerR-bulletD/2,
 			p.pos.Y+playerR-bulletD/2,
 		)
-		bullet := &Projectile{
+		bullet := Projectile{
 			d:   bulletD,
 			dmg: 1,
 		}
