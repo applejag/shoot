@@ -21,11 +21,11 @@ func (s *Set2[T]) add(v T) {
 	s.items = append(s.items, v)
 }
 
-func (s *Set2[T]) remove(i int) {
+func (s Set2[T]) remove(i int) {
 	s.isSet[i] = false
 }
 
-func (s *Set2[T]) len() int {
+func (s Set2[T]) len() int {
 	res := 0
 	for _, isSet := range s.isSet {
 		if isSet {
@@ -35,15 +35,15 @@ func (s *Set2[T]) len() int {
 	return res
 }
 
-func (s *Set2[T]) iter() []bool {
+func (s Set2[T]) iter() []bool {
 	return s.isSet
 }
 
-func (s *Set2[T]) ref(index int) *T {
+func (s Set2[T]) ref(index int) *T {
 	return &s.items[index]
 }
 
-func (s *Set2[T]) empty() bool {
+func (s Set2[T]) empty() bool {
 	for _, isSet := range s.isSet {
 		if isSet {
 			return false
