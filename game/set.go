@@ -18,11 +18,11 @@ func (s *Set[T]) add(v *T) {
 	s.items = append(s.items, v)
 }
 
-func (s *Set[T]) remove(i int) {
+func (s Set[T]) remove(i int) {
 	s.items[i] = nil
 }
 
-func (s *Set[T]) len() int {
+func (s Set[T]) len() int {
 	res := 0
 	for _, x := range s.items {
 		if x != nil {
@@ -32,11 +32,11 @@ func (s *Set[T]) len() int {
 	return res
 }
 
-func (s *Set[T]) iter() []*T {
+func (s Set[T]) iter() []*T {
 	return s.items
 }
 
-func (s *Set[T]) empty() bool {
+func (s Set[T]) empty() bool {
 	for _, x := range s.items {
 		if x != nil {
 			return false
