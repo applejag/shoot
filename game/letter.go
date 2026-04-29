@@ -23,6 +23,7 @@ func (b Letter) bbox() BBox {
 		Size:  brickSize,
 	}
 }
+
 func (b Letter) render() {
 	style := firefly.Style{
 		FillColor:   firefly.ColorLightGray,

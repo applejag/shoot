@@ -47,12 +47,13 @@ func iAmAlive() bool {
 }
 
 type Player struct {
-	peer   firefly.Peer
-	pad    *firefly.Pad
-	btns   firefly.Buttons
-	pos    firefly.Point
-	color  firefly.Color
-	health int
+	peer       firefly.Peer
+	pad        firefly.Pad
+	padTouched bool
+	btns       firefly.Buttons
+	pos        firefly.Point
+	color      firefly.Color
+	health     int
 }
 
 func loadPlayers() *Set[Player] {
@@ -83,36 +84,38 @@ func (p *Player) update() {
 	p.handleButtons(btns)
 	p.btns = btns
 
-	if touched {
-		if p.pad != nil {
-			dx := (pad.X - p.pad.X) / 20
-			dx = clamp(dx, -10, 10)
-			dy := (pad.Y - p.pad.Y) / 20
-			dy = clamp(dy, -10, 10)
+	p.handlePad(pad, touched)
+	p.pad = pad
+	p.padTouched = touched
+}
 
-			newX := clamp(p.pos.X+dx, 0, firefly.Width-playerD)
-			newY := clamp(p.pos.Y-dy, 0, firefly.Height-playerD)
-
-			b := BBox{
-				Point: firefly.P(newX, newY),
-				Size:  firefly.S(playerD, playerD),
-			}
-			b.Point = level.collide(p.pos, b)
-			for _, letter := range level.letters.iter() {
-				if letter == nil {
-					continue
-				}
-				if b.collides(letter.bbox()) {
-					letter.active = true
-					maybeStartGame()
-				}
-			}
-			p.pos = b.Point
-		}
-		p.pad = &pad
-	} else {
-		p.pad = nil
+func (p *Player) handlePad(pad firefly.Pad, touched bool) {
+	if !touched || !p.padTouched {
+		return
 	}
+	dx := (pad.X - p.pad.X) / 20
+	dx = clamp(dx, -10, 10)
+	dy := (pad.Y - p.pad.Y) / 20
+	dy = clamp(dy, -10, 10)
+
+	newX := clamp(p.pos.X+dx, 0, firefly.Width-playerD)
+	newY := clamp(p.pos.Y-dy, 0, firefly.Height-playerD)
+
+	b := BBox{
+		Point: firefly.P(newX, newY),
+		Size:  firefly.S(playerD, playerD),
+	}
+	b.Point = level.collide(p.pos, b)
+	for _, letter := range level.letters.iter() {
+		if letter == nil {
+			continue
+		}
+		if b.collides(letter.bbox()) {
+			letter.active = true
+			maybeStartGame()
+		}
+	}
+	p.pos = b.Point
 }
 
 func (p *Player) handleButtons(btns firefly.Buttons) {
