@@ -7,11 +7,19 @@ type Title struct {
 	ttl int
 }
 
-func setTitle(msg string) {
-	title = &Title{
+func (t *Title) show(msg string) {
+	*t = Title{
 		msg: msg,
 		ttl: 180,
 	}
+}
+
+func (t *Title) hide() {
+	t.ttl = 0
+}
+
+func (t Title) shouldShow() bool {
+	return t.ttl > 0
 }
 
 func (t *Title) update() {

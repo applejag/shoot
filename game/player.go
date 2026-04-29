@@ -27,7 +27,7 @@ func dropDeadPlayers() {
 		}
 	}
 	if players.empty() {
-		setTitle("everyone is dead")
+		title.show("everyone is dead")
 	} else if changed {
 		score.decreaseTo(5 * players.len())
 	}
@@ -76,6 +76,7 @@ func (p *Player) bbox() BBox {
 	}
 }
 
+//go:noinline
 func (p *Player) update() {
 	btns := firefly.ReadButtons(p.peer)
 	pad, touched := firefly.ReadPad(p.peer)

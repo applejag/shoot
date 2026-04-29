@@ -19,9 +19,9 @@ func (s *Score) decrement() {
 	s.val--
 	if s.val == 0 {
 		if iAmAlive() {
-			setTitle("victory!")
+			title.show("victory!")
 		} else {
-			setTitle("victory but without you")
+			title.show("victory but without you")
 		}
 	}
 }
