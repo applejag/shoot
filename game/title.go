@@ -18,7 +18,7 @@ func (t *Title) hide() {
 	t.ttl = 0
 }
 
-func (t Title) shouldShow() bool {
+func (t Title) isVisible() bool {
 	return t.ttl > 0
 }
 
